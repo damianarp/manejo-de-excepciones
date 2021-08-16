@@ -12,4 +12,18 @@ public class Calculadora {
         }
         return dividendo/(double)divisor;
     }
+
+    // Sobrecarga de método para dividir dos Strings, el cual propaga dos Excepciones.
+    public double dividir(String dividendo, String divisor) throws DivisionPorZeroException, FormatoNumeroException {
+        try {
+            // Parseamos los Strings al tipo Integer.
+            int numDividendo = Integer.parseInt(dividendo);
+            int numDivisor = Integer.parseInt(divisor);
+
+            // Aprovechamos este método y lo retornamos con los parámetros convertidos a int.
+            return this.dividir(numDividendo, numDivisor);
+        } catch (NumberFormatException nfe) { // Capturamos la NumberFormatException.
+            throw new FormatoNumeroException("Los valores ingresados no son numéricos."); // Arrojamos la excepción personalizada FormatoNumeroException.
+        }
+    }
 }

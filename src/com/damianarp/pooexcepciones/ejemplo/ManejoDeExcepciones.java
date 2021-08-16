@@ -12,15 +12,17 @@ public class ManejoDeExcepciones {
 
         Calculadora cal = new Calculadora();
 
-        String valor = JOptionPane.showInputDialog("Ingrese un número entero por el cuál dividir:"); // Mostramos un panel para ingresar el numero divisor.
-        int divisor;
-        double division;
+        String dividendo = JOptionPane.showInputDialog("Ingrese un dividendo:"); // Mostramos un panel para ingresar el numero divisor.
+        String divisor = JOptionPane.showInputDialog("Ingrese un divisor:"); // Mostramos un panel para ingresar el numero divisor.
+        double division2;
+
         try { // Atrapamos las excepciones.
-            divisor = Integer.parseInt(valor); // Lo convertimos a int.
-            division = cal.dividir(10, divisor);
-            System.out.println(division);
-        } catch (NumberFormatException nfe) {
-            System.out.println("El valor ingresado no es numérico. " + nfe.getMessage()); // Mostramos el mensaje de la excepción.
+            // División 2.
+            division2 = cal.dividir(dividendo, divisor);
+            System.out.println(division2);
+        } catch (FormatoNumeroException fne) {
+            System.out.println("Excepción en tiempo de ejecución: " + fne.getMessage()); // Mostramos el mensaje de la excepción.
+            fne.printStackTrace(System.out); // Mostramos por consola el registro del stack donde se ha iniciado la excepción.
             main(args); // Se vuelve a ejecutar el método main.
         } catch (DivisionPorZeroException dpze) {
             System.out.println("Excepción en tiempo de ejecución:  " + dpze.getMessage());
